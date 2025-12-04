@@ -49,15 +49,11 @@ async def run_migrations() -> None:
     """
     Simple, idempotent migration function.
 
-    It will be called on application startup to ensure the required
-    tables / columns exist.
-
-    For Stage 3:
-    - Create the 'pokemon' table if it does not exist yet.
+    - Creates the 'pokemon' table if it does not exist.
+    - Creates the 'pokemon_types' table if it does not exist.
     """
     async with engine.begin() as conn:
-        # We could also use ORM's Base.metadata.create_all, but here we
-        # show an explicit SQL-based approach for clarity.
+        # Main pokemon table
         await conn.execute(
             text(
                 """
@@ -74,4 +70,16 @@ async def run_migrations() -> None:
             )
         )
 
-    
+        # Types table (normalized)
+        await conn.execute(
+            text(
+                """
+                CREATE TABLE IF NOT EXISTS pokemon_types (
+                    pokemon_id INTEGER REFERENCES pokemon(pokemon_id) ON DELETE CASCADE,
+                    type_name TEXT NOT NULL,
+                    type_url TEXT NOT NULL,
+                    PRIMARY KEY (pokemon_id, type_name)
+                );
+                """
+            )
+        )
