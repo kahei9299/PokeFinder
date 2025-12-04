@@ -51,7 +51,7 @@ async def debug_pokemon_list(
     - Calls PokeAPI's /pokemon endpoint
     - Returns a trimmed version of the JSON
 
-    This does NOT touch our database yet.
+    Does not touch our database yet.
     """
     try:
         data = await fetch_pokemon_list(limit=limit, offset=offset)
