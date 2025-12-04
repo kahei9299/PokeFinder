@@ -1,9 +1,20 @@
 from fastapi import FastAPI
 from sqlalchemy import text
 
-from db import engine
+from db import engine, run_migrations
 
-app = FastAPI(title="Tokka Intern Pokemon Service - Stage 2")
+app = FastAPI(title="Tokka Intern Pokemon Service")
+
+
+@app.on_event("startup")
+async def on_startup():
+    """
+    Application startup hook.
+
+    This runs before the app starts serving requests.
+    use it to run simple database migrations.
+    """
+    await run_migrations()
 
 
 @app.get("/health")
@@ -11,17 +22,15 @@ async def health_check():
     """
     Health endpoint.
 
-    Now it checks:
-    - The app is running
-    - The database is reachable (simple SELECT 1)
+    Checks:
+    - App is running
+    - Database is reachable (simple SELECT 1)
     """
     try:
         async with engine.connect() as conn:
-            # 'text' safely wraps raw SQL
             await conn.execute(text("SELECT 1"))
         db_status = "connected"
     except Exception as e:
-        # If anything goes wrong connecting to DB, record it
         db_status = f"error: {e!s}"
 
     return {
