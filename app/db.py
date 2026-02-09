@@ -15,7 +15,7 @@ from models import Base
 # Connection string for the async DB engine
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql+asyncpg://postgres:postgres@db:5432/tokka_intern_assignment",
+    "postgresql+asyncpg://postgres:postgres@db:5432/PokeFinder",
 )
 
 # Global async engine

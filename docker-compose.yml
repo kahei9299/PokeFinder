@@ -4,13 +4,13 @@ services:
     image: postgres:16
     container_name: pokemon_db
     environment:
-      POSTGRES_DB: tokka_intern_assignment
+      POSTGRES_DB: PokeFinder
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
       - "5433:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d tokka_intern_assignment"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d PokeFinder"]
       interval: 5s
       timeout: 5s
       retries: 10

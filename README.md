@@ -31,16 +31,15 @@ This project integrates with the public **PokeAPI**, performs data ingestion, no
 
 ## 1. Clone the repository
 
-```bash
 git clone <your_repo_url>
-cd tokka_intern_assignment
-```
+cd PokeFinder
+
 
 ## 2. Start the application
 
-```bash
+
 docker-compose up --build
-```
+
 
 ### Service Ports
 
@@ -89,9 +88,9 @@ Normalized mapping of Pokémon → Types.
 
 ---
 
-# API Endpoints (Assignment Tasks)
+# API Endpoints 
 
-## Task 1 — Save Pokémon
+## Feature 1 — Save Pokémon
 
 **GET** `/pokemon/save`
 
@@ -122,7 +121,7 @@ Fetches Pokémon from PokeAPI and saves/upserts them into PostgreSQL.
 { "error": "Failed to fetch or save Pokemon data" }
 ```
 
-### Sample cURL Commands — Task 1
+### Sample cURL Commands — Feature 1
 
 **Save 20 Pokémon:**
 ```bash
@@ -141,7 +140,7 @@ curl "http://localhost:8080/pokemon/save?limit=0&offset=-1"
 
 ---
 
-## Task 2 — Enrich Pokémon Locations
+## Feature 2 — Enrich Pokémon Locations
 
 **GET** `/pokemon/locations/enrich`
 
@@ -162,7 +161,7 @@ Resolves location encounter URLs and stores the first location name inside `loca
 { "error": "Failed to fetch or update Pokemon location data" }
 ```
 
-### Sample cURL Commands — Task 2
+### Sample cURL Commands — Feature 2
 
 ```bash
 curl "http://localhost:8080/pokemon/locations/enrich"
@@ -176,7 +175,7 @@ curl "http://localhost:8080/pokemon/locations/enrich"
 
 ---
 
-## Task 3 — Generate Pokémon Natures
+## Feature 3 — Generate Pokémon Natures
 
 **GET** `/pokemon/generate-natures`
 
@@ -197,7 +196,7 @@ Fetches all available natures from PokeAPI and assigns one randomly to each Pok�
 { "error": "Failed to assign natures" }
 ```
 
-### Sample cURL Commands — Task 3
+### Sample cURL Commands — Feature 3
 
 **Assign natures:**
 ```bash
@@ -214,7 +213,7 @@ LIMIT 20;
 
 ---
 
-## Task 4 — Get Locations by Pokémon Type
+## Feature 4 — Get Locations by Pokémon Type
 
 **GET** `/pokemon/locations/by-type/{type}`
 
@@ -251,7 +250,7 @@ Returns all locations where Pokémon of the given type can be found, ordered by 
 { "error": "Failed to fetch location data" }
 ```
 
-### Sample cURL Commands — Task 4
+### Sample cURL Commands — Feature 4
 
 **Fairy type:**
 ```bash
@@ -279,7 +278,7 @@ curl "http://localhost:8080/pokemon/locations/by-type/fire?limit=-1"
 
 **Connect to DB:**
 ```bash
-psql -h localhost -p 5433 -U postgres -d tokka_intern_assignment
+psql -h localhost -p 5433 -U postgres -d PokeFinder
 ```
 
 **View Pokémon rows:**
@@ -360,4 +359,3 @@ PokeAPI v2 Documentation — response formats for Pokémon, types, locations
 
 ChatGPT — used as a technical assistant for architectural brainstorming, documentation drafting, and validating reasoning around async patterns and database design.
 
-Cursor AI — assisted in navigating, refactoring, and understanding complex sections of the codebase.

@@ -14,7 +14,7 @@ from models import Pokemon, PokemonType
 from utils import parse_limit_offset
 from schemas import SavePokemonResponse, EnrichLocationsResponse, GenerateNaturesResponse, LocationsByTypeResponse
 
-app = FastAPI(title="Tokka Intern Assignment - Pokemon Service")
+app = FastAPI(title="PokeFinder")
 
 def bad_request(message: str) -> JSONResponse:
     return JSONResponse(status_code=400, content={"error": message})
