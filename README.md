@@ -1,4 +1,4 @@
-# Tokka Labs Internship Assignment — Pokémon Data Service
+# PokeFinder — Pokémon Data Service
 
 A fully asynchronous, Docker-based Pokémon data ingestion and analytics service built with **FastAPI**, **PostgreSQL**, and **SQLAlchemy**.
 
